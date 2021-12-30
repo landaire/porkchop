@@ -12,6 +12,8 @@ A more in-depth blog post about how the encryption works can be found [on my blo
 
 ## Building
 
+To build/run you'll need a recent Rust toolchain installed. See [this guide](https://www.rust-lang.org/tools/install) to get started.
+
 ```
 git clone https://github.com/landaire/porkchop.git
 cd porkchop
