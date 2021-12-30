@@ -1,0 +1,18 @@
+[package]
+name = "porkchop"
+version = "0.1.0"
+edition = "2021"
+authors = ["@landaire"]
+repository = "https://github.com/landaire/porkchop"
+
+
+[dependencies]
+chrono = "0.4"
+byteorder = "1.4"
+pretty-hex = "0.2"
+structopt = "0.3"
+pelite = "0.9"
+thiserror = "1.0"
+log = "0.4"
+pretty_env_logger = "0.4"
+anyhow = "1.0"
