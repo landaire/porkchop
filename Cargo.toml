@@ -4,6 +4,9 @@ version = "0.1.0"
 edition = "2021"
 authors = ["@landaire"]
 repository = "https://github.com/landaire/porkchop"
+license = "MIT"
+readme = "README.md"
+description = "Decryption utility for Yaesu ham radio firmware images"
 
 
 [dependencies]
