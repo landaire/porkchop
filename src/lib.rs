@@ -44,36 +44,37 @@ pub fn decrypt(update_info: &[u8]) -> Result<Vec<u8>, Error> {
 
     // There's a blob of size 0x5c at the end of the update info that describes
     // the update
-    let mut reader = Cursor::new(&update_info[update_info.len() - 0x5c..]);
+    let mut reader = Cursor::new(&update_info[0x100_004..]);
     let firmware_size = reader
         .read_u32::<LittleEndian>()
         .map_err(|_| Error::InvalidMetadata("firmware_size"))? as usize;
-    eprintln!("Firmware size: {:#x}", firmware_size);
+    eprintln!("Maybe firmware size: {:#x}", firmware_size);
+    let firmware_size = 0x100_000;
 
-    // No idea if this is actually a string count
-    let maybe_string_count = reader
-        .read_u32::<LittleEndian>()
-        .map_err(|_| Error::InvalidMetadata("string_count"))?;
+    // // No idea if this is actually a string count
+    // let maybe_string_count = reader
+    //     .read_u32::<LittleEndian>()
+    //     .map_err(|_| Error::InvalidMetadata("string_count"))?;
 
-    let mut str_buffer = Vec::with_capacity(0x100);
-    for _ in 0..maybe_string_count as usize {
-        str_buffer.clear();
-        loop {
-            let c = reader
-                .read_u8()
-                .map_err(|_| Error::InvalidMetadata("string_table"))?;
-            if c == 0x0 {
-                break;
-            }
+    // let mut str_buffer = Vec::with_capacity(0x100);
+    // for _ in 0..maybe_string_count as usize {
+    //     str_buffer.clear();
+    //     loop {
+    //         let c = reader
+    //             .read_u8()
+    //             .map_err(|_| Error::InvalidMetadata("string_table"))?;
+    //         if c == 0x0 {
+    //             break;
+    //         }
 
-            str_buffer.push(c);
-        }
-        eprintln!(
-            "{}",
-            std::str::from_utf8(str_buffer.as_slice())
-                .map_err(|_| Error::InvalidMetadata("string_in_string_table"))?
-        );
-    }
+    //         str_buffer.push(c);
+    //     }
+    //     eprintln!(
+    //         "{}",
+    //         std::str::from_utf8(str_buffer.as_slice())
+    //             .map_err(|_| Error::InvalidMetadata("string_in_string_table"))?
+    //     );
+    // }
 
     Ok(decryptor.decrypt_data(&update_info[4..firmware_size + 4]))
 }
