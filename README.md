@@ -17,7 +17,10 @@ To build/run you'll need a recent Rust toolchain installed. See [this guide](htt
 ```
 git clone https://github.com/landaire/porkchop.git
 cd porkchop
-cargo build
+# To build
+cargo build --release
+# To run
+cargo run --release -- <porkchop args here>
 ```
 
 You can optionally install it direct from crates.io:
