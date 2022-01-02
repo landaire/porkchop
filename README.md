@@ -8,7 +8,7 @@ Decryption utility for Yaesu ham radio firmware images.
 
 Yaesu provides a firmware update utility for their ham radios that contains an encrypted firmware image. This utility reimplements the decryption algorithm found in the update utility and emits a decrypted image.
 
-A more in-depth blog post about how the encryption works can be found [on my blog](https://landaire.net//yaesu-obfuscation/).
+A more in-depth blog post about how the encryption works can be found [on my blog](https://landaire.net/reversing-yaesu-firmware-encryption/).
 
 ## Building
 
